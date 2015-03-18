@@ -1,83 +1,41 @@
 # IOS-test
-Mac 上测试git提交代码与获取github上的代码
+Mac上Git的安装与简单使用
 
-需要熟记的git命令
-总结一下ubuntu下github常用的命令，设置部分跳过，假设repository的名字叫hello-world：
+一、安装：
 
-1.创建一个新的repository：
+Git下载地址：
+http://git-scm.com/downloads/
+下载Git、配置Git：
+http://blog.csdn.net/reactor1379/article/details/8008677
 
-先在github上创建并写好相关名字，描述。
 
-$cd ~/hello-world //到hello-world目录
+二、使用：
+1、创建一个新的repository：IOS-test
+可参考：http://blog.csdn.net/delphiwcdj/article/details/23055125
 
-$git init //初始化
+2、在Mac中新建一个本地仓库：local_repository并通过终端切换到该目录
+$cd /Users/qianhua/Desktop/wen/local_repository  //切换目录
 
-$git add . //把所有文件加入到索引（不想把所有文件加入，可以用gitignore或add 具体文件)
+将github上的仓库clone到local_repository
+$git clone https://github.com/ETmanwenhan/IOS-test.git
+就会在local_repository中多了一个IOS-test的文件夹
 
-$git commit //提交到本地仓库，然后会填写更新日志( -m “更新日志”也可)
+3、手动往IOS-test中添加MapKit1项目并执行以下git命令
+$git add .	//添加当前目录的所有文件到暂存区
+可执行$git status  //查看状态
 
-$git remote add origin git@github.com:WadeLeng/hello-world.git //增加到remote
+4、将暂存区中的变动提交到本地仓库
+$git commit -m '这里写明提交的注释：提交到本地仓库'
 
-$git push origin master //push到github上
+5、将本地的仓库中所在变动的文件推送到远程仓库
+$git push origin master  //clone 操作会自动使用默认的origin[remote-name]与master[branch-name]
 
-2.更新项目（新加了文件）：
 
-$cd ~/hello-world
 
-$git add . //这样可以自动判断新加了哪些文件，或者手动加入文件名字
 
-$git commit //提交到本地仓库
+需要熟记的git命令:
+http://www.2cto.com/kf/201212/179768.html
 
-$git push origin master //不是新创建的，不用再add 到remote上了
 
-3.更新项目（没新加文件，只有删除或者修改文件）：
-
-$cd ~/hello-world
-
-$git commit -a //记录删除或修改了哪些文件
-
-$git push origin master //提交到github
-
-4.忽略一些文件，比如*.o等:
-
-$cd ~/hello-world
-
-$vim .gitignore //把文件类型加入到.gitignore中，保存
-
-然后就可以git add . 能自动过滤这种文件
-
-5.clone代码到本地：
-
-$git clone git@github.com:WadeLeng/hello-world.git
-
-假如本地已经存在了代码，而仓库里有更新，把更改的合并到本地的项目：
-
-$git fetch origin //获取远程更新
-
-$git merge origin/master //把更新的内容合并到本地分支
-
-6.撤销
-
-$git reset
-
-7.删除
-
-$git rm * // 不是用rm
-
-//——————————常见错误———————————–
-
-1.$ git remote add origin git@github.com:WadeLeng/hello-world.git
-
-错误提示：fatal: remote origin already exists.
-
-解决办法：$ git remote rm origin
-
-然后在执行：$ git remote add origin git@github.com:WadeLeng/hello-world.git 就不会报错误了
-
-2. $ git push origin master
-
-错误提示：error:failed to push som refs to
-
-解决办法：$ git pull origin master //先把远程服务器github上面的文件拉先来，再push 上去。
-
-//—————————————
+《Pro Git》git圣经中文版：
+http://download.csdn.net/download/lidaasky/7496835
